@@ -79,8 +79,16 @@ class GoToWebinar extends ServiceAbstract implements CitrixApiAware
    * @return \ArrayObject - Processed response
    */
   public function getPast(){
+<<<<<<< HEAD
     $since = date(DATE_ISO8601, mktime(0, 0, 0, 7, 1, 2000));
     $until = date(DATE_ISO8601);
+=======
+    // The GTW api expects ISO8601 dates with no offset
+    // (with a literal 'Z' on the end). e.g 2017-02-20T03:00:00Z 
+    $since = date('Y-m-d\TH:i:s\Z', mktime(0, 0, 0, 7, 1, 2000));
+    $until = date('Y-m-d\TH:i:s\Z');
+
+>>>>>>> 08fc70f4a05635a0a0c12dd02f2f037c9bd48c00
     $url = 'https://api.getgo.com/G2W/rest/organizers/' . $this->getClient()->getOrganizerKey() . '/historicalWebinars';
 
     $this->setHttpMethod('GET')
@@ -182,7 +190,11 @@ class GoToWebinar extends ServiceAbstract implements CitrixApiAware
    * @return \Citrix\GoToWebinar
    */
   public function register($webinarKey, $registrantData){
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 08fc70f4a05635a0a0c12dd02f2f037c9bd48c00
     $url = 'https://api.getgo.com/G2W/rest/organizers/' . $this->getClient()->getOrganizerKey() . '/webinars/' . $webinarKey . '/registrants';
     $this->setHttpMethod('POST')
         ->setUrl($url)
